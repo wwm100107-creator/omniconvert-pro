@@ -88,7 +88,7 @@ export const DropZone: React.FC<DropZoneProps> = ({ onFilesSelected }) => {
 
             <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-medium border border-blue-500/20">
               <FileText className="w-3.5 h-3.5" />
-              Tài liệu: DOCX, TXT, MD, HTML, PDF...
+              Tài liệu & Sơ đồ: DOCX, PDF, .IO, DRAWIO, MD...
             </span>
 
             <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs font-medium border border-purple-500/20">

@@ -22,6 +22,10 @@ export const SUPPORTED_FORMATS: Record<string, FormatMeta> = {
   avif: { ext: 'avif', label: 'AVIF Image', category: 'image', mime: 'image/avif', description: 'Chuẩn ảnh thế hệ mới siêu nén dựa trên AV1' },
   tiff: { ext: 'tiff', label: 'TIFF Image', category: 'image', mime: 'image/tiff', description: 'Định dạng ảnh chất lượng cao chuyên ngành in ấn và nhiếp ảnh' },
 
+  // === SƠ ĐỒ DRAW.IO & TỆP .IO ===
+  io: { ext: 'io', label: 'IO / Draw.io Diagram File', category: 'document', mime: 'application/xml', description: 'Tập tin sơ đồ kiến trúc Draw.io hoặc tệp luồng dữ liệu I/O' },
+  drawio: { ext: 'drawio', label: 'Draw.io Diagram', category: 'document', mime: 'application/xml', description: 'Tập tin thiết kế sơ đồ luồng Diagrams.net / Draw.io' },
+
   // === ÂM THANH (AUDIO) ===
   mp3: { ext: 'mp3', label: 'MP3 Audio', category: 'audio', mime: 'audio/mpeg', description: 'Chuẩn âm thanh nén phổ biến nhất thế giới' },
   wav: { ext: 'wav', label: 'WAV Audio', category: 'audio', mime: 'audio/wav', description: 'Âm thanh nguyên bản không nén chuẩn phòng thu (PCM)' },
@@ -61,6 +65,7 @@ export const SUPPORTED_FORMATS: Record<string, FormatMeta> = {
   // === NÉN & LƯU TRỮ (ARCHIVE) ===
   zip: { ext: 'zip', label: 'ZIP Archive', category: 'archive', mime: 'application/zip', description: 'Tập tin nén gói nhiều file chuẩn ZIP' },
   tar: { ext: 'tar', label: 'TAR Archive', category: 'archive', mime: 'application/x-tar', description: 'Tập tin đóng gói nhiều file Unix/Linux' },
+  iso: { ext: 'iso', label: 'ISO Disk Image', category: 'archive', mime: 'application/x-iso9660-image', description: 'Tập tin ảnh đĩa quang tiêu chuẩn ISO 9660' },
 };
 
 // MA TRẬN CHUYỂN ĐỔI CHÍNH XÁC (CONVERSION MATRIX)
@@ -81,6 +86,10 @@ export const CONVERSION_MATRIX: Record<string, string[]> = {
 
   // GIF -> Trích xuất ảnh tĩnh, PDF hoặc chuyển đổi định dạng
   gif: ['png', 'jpg', 'webp', 'bmp', 'pdf'],
+
+  // Tệp Sơ đồ .IO & .DRAWIO
+  io: ['svg', 'png', 'pdf', 'xml', 'json', 'html', 'txt'],
+  drawio: ['svg', 'png', 'pdf', 'xml', 'json', 'html', 'txt'],
 
   // Âm thanh -> Chuyển đổi qua lại giữa các chuẩn nén / không nén
   mp3: ['wav', 'ogg', 'weba'],
@@ -128,9 +137,10 @@ export const CONVERSION_MATRIX: Record<string, string[]> = {
   yaml: ['json', 'txt'],
   yml: ['json', 'txt'],
 
-  // Nén
+  // Nén & Ảnh đĩa
   zip: ['tar'],
   tar: ['zip'],
+  iso: ['zip', 'tar'],
 };
 
 // Hàm lấy danh sách đuôi có thể chuyển đổi được từ 1 extension nguồn
@@ -156,6 +166,9 @@ export function getFileCategory(ext: string): FileCategory {
   if (['png', 'jpg', 'jpeg', 'webp', 'bmp', 'gif', 'svg', 'ico', 'tiff', 'avif', 'heic', 'heif'].includes(cleanExt)) {
     return 'image';
   }
+  if (['io', 'drawio'].includes(cleanExt)) {
+    return 'document';
+  }
   if (['mp3', 'wav', 'ogg', 'aac', 'm4a', 'flac', 'weba', 'wma'].includes(cleanExt)) {
     return 'audio';
   }
@@ -168,7 +181,7 @@ export function getFileCategory(ext: string): FileCategory {
   if (['json', 'xml', 'yaml', 'yml'].includes(cleanExt)) {
     return 'data';
   }
-  if (['zip', 'tar', 'gz', 'rar', '7z'].includes(cleanExt)) {
+  if (['zip', 'tar', 'gz', 'rar', '7z', 'iso'].includes(cleanExt)) {
     return 'archive';
   }
   return 'document';

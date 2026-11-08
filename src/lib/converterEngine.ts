@@ -6,8 +6,10 @@ import {
   convertDocx, 
   convertSpreadsheet, 
   convertJsonData, 
-  convertTextDocument 
+  convertTextDocument,
+  convertDiagramIoFile
 } from './converters/documentConverter';
+import { createZipArchive } from './converters/archiveConverter';
 
 export interface ConvertResult {
   blob: Blob;
@@ -44,8 +46,14 @@ export async function executeConversion(
   const category = getFileCategory(sourceExt);
   let resultBlob: Blob;
 
-  // 2. Phân luồng xử lý theo danh mục
-  if (category === 'image') {
+  // 2. Phân luồng xử lý theo danh mục & định dạng đặc thù
+  if (sourceExt === 'io' || sourceExt === 'drawio') {
+    if (onProgress) onProgress(60);
+    resultBlob = await convertDiagramIoFile(file, cleanTargetExt);
+  } else if (sourceExt === 'iso' && (cleanTargetExt === 'zip' || cleanTargetExt === 'tar')) {
+    if (onProgress) onProgress(50);
+    resultBlob = await createZipArchive([{ name: `${baseName}.iso`, blob: file }]);
+  } else if (category === 'image') {
     if (onProgress) onProgress(50);
     resultBlob = await convertImage(file, cleanTargetExt);
   } else if (category === 'audio') {

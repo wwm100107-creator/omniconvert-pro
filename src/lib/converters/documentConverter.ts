@@ -272,3 +272,177 @@ export async function convertTextDocument(file: File, sourceExt: string, targetE
 
   throw new Error(`Không hỗ trợ chuyển từ ${sourceExt} sang ${targetExt}`);
 }
+
+
+/**
+ * Chuyển đổi tệp sơ đồ .IO và .DRAWIO (Diagrams.net XML / I/O Data)
+ */
+export async function convertDiagramIoFile(file: File, targetExt: string): Promise<Blob> {
+  const content = await file.text();
+  const cleanTarget = targetExt.toLowerCase().replace(/^\./, '');
+
+  // Trích xuất các nhãn văn bản từ tệp sơ đồ XML Draw.io
+  const extractLabelsFromDrawIo = (xmlStr: string): string[] => {
+    const labels: string[] = [];
+    try {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(xmlStr, 'application/xml');
+      const cells = doc.querySelectorAll('mxCell');
+      cells.forEach((cell) => {
+        const val = cell.getAttribute('value');
+        if (val && val.trim()) {
+          labels.push(val.trim());
+        }
+      });
+      if (labels.length === 0) {
+        // Fallback regex trích xuất value="..."
+        const regex = /value="([^"]+)"/g;
+        let match;
+        while ((match = regex.exec(xmlStr)) !== null) {
+          if (match[1].trim()) labels.push(match[1].trim());
+        }
+      }
+    } catch {
+      // nếu không phải xml, tách dòng bình thường
+      return xmlStr.split('\n').filter(l => l.trim().length > 0);
+    }
+    return labels.length > 0 ? labels : [xmlStr];
+  };
+
+  if (cleanTarget === 'xml') {
+    return new Blob([content], { type: 'application/xml;charset=utf-8' });
+  }
+
+  if (cleanTarget === 'txt') {
+    const labels = extractLabelsFromDrawIo(content);
+    const txtOutput = labels.join('\n');
+    return new Blob([txtOutput], { type: 'text/plain;charset=utf-8' });
+  }
+
+  if (cleanTarget === 'json') {
+    try {
+      const labels = extractLabelsFromDrawIo(content);
+      const jsonObj = {
+        fileName: file.name,
+        fileType: 'drawio-diagram',
+        totalNodes: labels.length,
+        nodes: labels.map((lbl, idx) => ({ id: idx + 1, label: lbl })),
+        rawContent: content.length < 100000 ? content : content.slice(0, 100000)
+      };
+      return new Blob([JSON.stringify(jsonObj, null, 2)], { type: 'application/json' });
+    } catch {
+      return new Blob([JSON.stringify({ raw: content }, null, 2)], { type: 'application/json' });
+    }
+  }
+
+  if (cleanTarget === 'html') {
+    const labels = extractLabelsFromDrawIo(content);
+    const nodesHtml = labels.map(l => `<div class="node-box">${l.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>`).join('\n');
+    const fullHtml = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>${file.name} - Diagram View</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; background: #0f172a; color: #f8fafc; padding: 40px; margin: 0; }
+    h1 { font-size: 20px; color: #818cf8; margin-bottom: 24px; border-bottom: 1px solid #334155; padding-bottom: 12px; }
+    .diagram-container { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 20px; }
+    .node-box { background: #1e293b; border: 1px solid #475569; border-radius: 8px; padding: 12px 18px; font-size: 14px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2); }
+    .raw-section { margin-top: 40px; }
+    pre { background: #020617; border: 1px solid #1e293b; border-radius: 8px; padding: 16px; overflow: auto; max-height: 400px; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <h1>📊 Sơ đồ: ${file.name}</h1>
+  <div class="diagram-container">
+    ${nodesHtml}
+  </div>
+  <div class="raw-section">
+    <h3>Mã nguồn sơ đồ gốc (XML / Data)</h3>
+    <pre>${content.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre>
+  </div>
+</body>
+</html>`;
+    return new Blob([fullHtml], { type: 'text/html' });
+  }
+
+  if (cleanTarget === 'svg') {
+    const labels = extractLabelsFromDrawIo(content);
+    const svgNodes = labels.slice(0, 50).map((label, idx) => {
+      const col = idx % 4;
+      const row = Math.floor(idx / 4);
+      const x = 40 + col * 200;
+      const y = 80 + row * 80;
+      const safeLabel = label.replace(/</g, '&lt;').replace(/>/g, '&gt;').slice(0, 24);
+      return `
+        <rect x="${x}" y="${y}" width="180" height="50" rx="8" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
+        <text x="${x + 90}" y="${y + 30}" font-family="sans-serif" font-size="12" fill="#f8fafc" text-anchor="middle">${safeLabel}</text>
+      `;
+    }).join('\n');
+
+    const totalRows = Math.ceil(Math.min(labels.length, 50) / 4) || 1;
+    const svgHeight = Math.max(300, 120 + totalRows * 80);
+
+    const svgDoc = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="${svgHeight}" viewBox="0 0 900 ${svgHeight}">
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <text x="40" y="45" font-family="sans-serif" font-size="18" font-weight="bold" fill="#818cf8">${file.name} (Diagram Vector)</text>
+  ${svgNodes}
+</svg>`;
+    return new Blob([svgDoc], { type: 'image/svg+xml' });
+  }
+
+  if (cleanTarget === 'pdf') {
+    const labels = extractLabelsFromDrawIo(content);
+    return textToPDF(labels.join('\n\n'), file.name);
+  }
+
+  if (cleanTarget === 'png') {
+    const labels = extractLabelsFromDrawIo(content);
+    const canvas = document.createElement('canvas');
+    canvas.width = 1200;
+    const totalRows = Math.ceil(Math.min(labels.length, 60) / 4) || 1;
+    canvas.height = Math.max(400, 160 + totalRows * 100);
+    const ctx = canvas.getContext('2d')!;
+
+    // Nền
+    ctx.fillStyle = '#0f172a';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Tiêu đề
+    ctx.fillStyle = '#818cf8';
+    ctx.font = 'bold 24px sans-serif';
+    ctx.fillText(file.name + ' - Exported Diagram', 40, 50);
+
+    // Vẽ các nút sơ đồ
+    labels.slice(0, 60).forEach((lbl, idx) => {
+      const col = idx % 4;
+      const row = Math.floor(idx / 4);
+      const x = 40 + col * 280;
+      const y = 90 + row * 90;
+
+      ctx.fillStyle = '#1e293b';
+      ctx.strokeStyle = '#6366f1';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.roundRect(x, y, 260, 60, 10);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = '#f8fafc';
+      ctx.font = '14px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(lbl.slice(0, 28), x + 130, y + 30);
+    });
+
+    return new Promise((resolve, reject) => {
+      canvas.toBlob((blob) => {
+        if (blob) resolve(blob);
+        else reject(new Error('Lỗi xuất PNG từ sơ đồ .io'));
+      }, 'image/png');
+    });
+  }
+
+  throw new Error(`Không hỗ trợ chuyển .${file.name.split('.').pop()} sang .${cleanTarget}`);
+}

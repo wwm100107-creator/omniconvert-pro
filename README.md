@@ -57,10 +57,11 @@
   - Tích hợp công cụ **SheetJS (XLSX)** để giải mã cấu trúc workbook, worksheet, kiểu dữ liệu từng ô (chuỗi, số, ngày tháng, công thức).
   - Chuyển đổi hai chiều mượt mà giữa bảng tính Excel và các định dạng trao đổi dữ liệu như JSON, CSV, TSV, HTML table hoặc PDF báo cáo.
 
-#### 📄 E. Phân Hệ Tài Liệu Word (DOCX) & Văn Bản
-- **Định dạng hỗ trợ**: `DOCX`, `TXT`, `MD`, `HTML`, `PDF`...
+#### 📄 E. Phân Hệ Tài Liệu Word, Văn Bản & Sơ Đồ (.IO, .DRAWIO)
+- **Định dạng hỗ trợ**: `DOCX`, `TXT`, `MD`, `HTML`, `PDF`, `.IO`, `.DRAWIO`...
 - **Logic xử lý**:
   - Dùng **Mammoth.js** để bóc tách tệp nén OpenXML của Word, trích xuất cấu trúc văn bản sạch không rác (Clean Semantic Document Tree).
+  - Với tệp **Sơ đồ Draw.io / Tệp I/O (`.io`, `.drawio`)**: Bóc tách cây XML mxCell để trích xuất các nút và nhãn sơ đồ, chuyển đổi thành vector `SVG`, xuất ảnh `PNG` độ nét cao, tạo tài liệu `PDF`, tạo tài liệu web `HTML` kèm preview trực quan, hoặc trích xuất `JSON`/`XML`/`TXT`.
   - Hỗ trợ xuất sang **PDF** với thuật toán tự động ngắt dòng thông minh (`splitTextToSize`) và tự động thêm trang A4 mới khi văn bản vượt quá chiều cao trang.
 
 ---
