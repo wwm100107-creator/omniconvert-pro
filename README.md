@@ -1,6 +1,6 @@
-# 🌟 OmniConvert Pro - Công Cụ Chuyển Đổi Tệp Đa Định Dạng Không Lỗi (Universal File Matrix Converter)
+# 🌟 UyConvert Pro - Bộ Chuyển Đổi Tệp Đa Định Dạng Uy Tín | By Uy
 
-> **Công cụ web vạn năng hỗ trợ chuyển đổi tất cả các định dạng tệp (Ảnh, Video, Âm thanh, Tài liệu Word, Bảng tính Excel, Dữ liệu có cấu trúc & Nén) với cơ chế bảo toàn tính toàn vẹn 100%, tuyệt đối không làm hỏng cấu trúc tệp.**
+> **Công cụ web vạn năng của Uy hỗ trợ chuyển đổi tất cả các định dạng tệp (Ảnh, Video, Âm thanh, Sơ đồ .IO/.DRAWIO, Tài liệu Word, Bảng tính Excel, Dữ liệu có cấu trúc & Nén) với cơ chế bảo toàn tính toàn vẹn 100%, tuyệt đối không làm hỏng cấu trúc tệp.**
 
 ---
 
@@ -8,7 +8,7 @@
 
 ### 1. Tại sao chuyển đổi không bao giờ bị lỗi (Chống bẫy "Đổi tên file giả mạo")?
 - **Vấn đề thực tế**: Rất nhiều công cụ chuyển đổi trên thị trường chỉ đơn giản là đổi tên phần mở rộng (ví dụ từ `tailieu.png` thành `tailieu.jpg` hoặc từ `video.mp4` thành `video.mp3`). Điều này **không làm thay đổi cấu trúc byte nhị phân** bên trong. Khi người dùng mở file bằng các phần mềm chuyên dụng (Photoshop, Excel, Media Player), phần mềm sẽ báo lỗi *“File format or extension is not valid”* hoặc *“File is corrupted”*.
-- **Giải pháp của OmniConvert Pro**:
+- **Giải pháp của UyConvert Pro**:
   - Hệ thống thực hiện **chuyển đổi nhị phân thực thụ (True Transcoding & Data Reconstruction)**.
   - Tệp gốc được nạp vào bộ nhớ RAM và giải mã hoàn toàn thành dữ liệu thô (Raw Pixel Array cho ảnh, PCM Audio Samples cho âm thanh, Abstract Syntax Tree cho tài liệu, Sheet Cell Objects cho bảng tính).
   - Sau đó, dữ liệu thô được đóng gói và mã hóa lại theo đúng quy chuẩn cấu trúc IANA / W3C của định dạng đích (Header chuẩn, Chunk dữ liệu, Bảng màu Palette, Nén không mất mát hoặc nén chuẩn).

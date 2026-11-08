@@ -47,7 +47,7 @@ export const LogicExplanationModal: React.FC<LogicModalProps> = ({ isOpen, onClo
               Rất nhiều phần mềm kém chất lượng chỉ đơn thuần là <strong>đổi đuôi tên file</strong> (ví dụ đổi <code className="text-pink-300 font-mono">anh.png</code> thành <code className="text-pink-300 font-mono">anh.jpg</code>). Hành vi này không làm thay đổi cấu trúc byte bên trong, dẫn đến phần mềm khác không thể mở được (báo lỗi Corrupt File hoặc Invalid Header).
             </p>
             <p className="mt-2 text-slate-300">
-              <strong>OmniConvert Pro xử lý chuyển đổi nhị phân thực thụ (True Transcoding):</strong>
+              <strong>UyConvert Pro xử lý chuyển đổi nhị phân thực thụ (True Transcoding):</strong>
             </p>
             <ul className="list-disc list-inside mt-1.5 space-y-1 text-slate-400">
               <li>Giải nén và phân tích cấu trúc nhị phân của file gốc vào bộ nhớ RAM.</li>

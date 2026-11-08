@@ -8,15 +8,15 @@ export const Footer: React.FC = () => {
         <div className="flex items-center gap-2">
           <ShieldCheck className="w-4 h-4 text-emerald-400" />
           <span>
-            OmniConvert Pro &bull; Công cụ chuyển đổi file vạn năng không lỗi &bull; 100% Client-Side
+            UyConvert Pro &bull; Bộ công cụ chuyển đổi tệp vạn năng chuẩn Uy Tín của Uy &bull; 100% Client-Side
           </span>
         </div>
 
         <div className="flex items-center gap-4 text-slate-500">
-          <span>Xây dựng trên nền tảng WebAssembly & Web APIs</span>
+          <span>Tạo dựng bởi Uy &bull; WebAssembly & Web APIs</span>
           <span>&bull;</span>
           <span className="flex items-center gap-1">
-            Made with <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> for creators
+            Made with <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> for Uy & everyone
           </span>
         </div>
       </div>

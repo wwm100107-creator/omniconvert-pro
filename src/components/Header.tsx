@@ -17,15 +17,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMatrix, onOpenLogic }) => 
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-extrabold text-xl tracking-tight bg-gradient-to-r from-white via-slate-100 to-indigo-300 bg-clip-text text-transparent">
-                OmniConvert Pro
+              <span className="font-extrabold text-xl tracking-tight bg-gradient-to-r from-amber-300 via-indigo-200 to-pink-300 bg-clip-text text-transparent">
+                UyConvert Pro
               </span>
               <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                100% Client-Side
+                By Uy &bull; 100% Client-Side
               </span>
             </div>
             <p className="text-xs text-slate-400">
-              Chuyển đổi đa định dạng siêu tốc &bull; Bảo toàn dữ liệu &bull; Không gửi file lên server
+              Bộ chuyển đổi tệp vạn năng của Uy &bull; Bảo toàn dữ liệu &bull; Chuẩn xác 100%
             </p>
           </div>
         </div>

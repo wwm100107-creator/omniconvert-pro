@@ -172,7 +172,7 @@ export const App: React.FC = () => {
     const url = URL.createObjectURL(zipBlob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `OmniConvert_Batch_${Date.now()}.zip`;
+    a.download = `UyConvert_Batch_${Date.now()}.zip`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -194,16 +194,16 @@ export const App: React.FC = () => {
         {/* Hero Section */}
         <div className="text-center space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold">
-            <Zap className="w-3.5 h-3.5" />
-            <span>Công Nghệ Chuyển Đổi Tệp Chuẩn Nhị Phân &bull; Không Lỗi File</span>
+            <Zap className="w-3.5 h-3.5 text-amber-400" />
+            <span>UyConvert Pro &bull; Công Nghệ Chuyển Đổi Tệp Chuẩn Uy Tín &bull; 100% Không Lỗi</span>
           </div>
 
           <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-b from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
-            Chuyển Đổi Mọi Định Dạng Tệp Tin
+            Chuyển Đổi Mọi Định Dạng Cùng <span className="text-indigo-400">Uy</span>
           </h1>
 
           <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto">
-            Hỗ trợ toàn diện Ảnh, Video, Âm thanh, Tài liệu Word, Bảng tính Excel và Dữ liệu. Hệ thống chỉ cho phép chuyển đổi sang các đuôi tương thích 100%, loại bỏ triệt để nguy cơ làm hỏng tệp.
+            Hệ thống chuyển đổi đa định dạng cá nhân hóa của Uy: Xử lý siêu tốc Ảnh, Video, Âm thanh, Sơ đồ .IO, Tài liệu Word, Bảng tính Excel và Dữ liệu có cấu trúc. Chỉ hiển thị định dạng tương thích 100%!
           </p>
         </div>
 
