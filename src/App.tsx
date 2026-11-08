@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
 import { Header } from './components/Header';
+import { UyLogo } from './components/UyLogo';
 import { DropZone } from './components/DropZone';
 import { FileCard } from './components/FileCard';
 import { MatrixModal } from './components/MatrixModal';
@@ -192,18 +193,22 @@ export const App: React.FC = () => {
 
       <main className="flex-1 max-w-5xl w-full mx-auto px-4 py-8 md:py-12 flex flex-col gap-8">
         {/* Hero Section */}
-        <div className="text-center space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold">
-            <Zap className="w-3.5 h-3.5 text-amber-400" />
-            <span>UyConvert Pro &bull; Công Nghệ Chuyển Đổi Tệp Chuẩn Uy Tín &bull; 100% Không Lỗi</span>
+        <div className="text-center space-y-3.5">
+          <div className="flex justify-center">
+            <UyLogo className="w-14 h-14" />
           </div>
 
-          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-b from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
-            Chuyển Đổi Mọi Định Dạng Cùng <span className="text-indigo-400">Uy</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-300 text-xs font-medium">
+            <Zap className="w-3.5 h-3.5 text-indigo-400" />
+            <span>UyConvert &bull; Minimalist File Transcoding &bull; By Uy</span>
+          </div>
+
+          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white">
+            Chuyển Đổi Mọi Định Dạng Cùng <span className="text-slate-300">Uy</span>
           </h1>
 
-          <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto">
-            Hệ thống chuyển đổi đa định dạng cá nhân hóa của Uy: Xử lý siêu tốc Ảnh, Video, Âm thanh, Sơ đồ .IO, Tài liệu Word, Bảng tính Excel và Dữ liệu có cấu trúc. Chỉ hiển thị định dạng tương thích 100%!
+          <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            Hệ thống chuyển đổi file đa định dạng tối giản: Xử lý trực tiếp trên trình duyệt, bảo toàn dữ liệu 100%, không bị lỗi, không tải lên server.
           </p>
         </div>
 

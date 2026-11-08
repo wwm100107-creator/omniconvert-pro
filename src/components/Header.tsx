@@ -1,5 +1,6 @@
 import React from 'react';
-import { Sparkles, ShieldCheck, HelpCircle, Layers } from 'lucide-react';
+import { ShieldCheck, HelpCircle, Layers } from 'lucide-react';
+import { UyLogo } from './UyLogo';
 
 interface HeaderProps {
   onOpenMatrix: () => void;
@@ -8,24 +9,22 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onOpenMatrix, onOpenLogic }) => {
   return (
-    <header className="border-b border-slate-800 bg-slate-900/60 backdrop-blur-md sticky top-0 z-40">
-      <div className="max-w-6xl mx-auto px-4 py-3.5 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <header className="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
+      <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-4">
         {/* Brand */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center shadow-lg shadow-indigo-500/25">
-            <Sparkles className="w-5 h-5 text-white animate-pulse" />
-          </div>
+          <UyLogo className="w-9 h-9 shrink-0 drop-shadow-sm" />
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-extrabold text-xl tracking-tight bg-gradient-to-r from-amber-300 via-indigo-200 to-pink-300 bg-clip-text text-transparent">
-                UyConvert Pro
+              <span className="font-bold text-lg tracking-tight text-slate-100">
+                UyConvert
               </span>
-              <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                By Uy &bull; 100% Client-Side
+              <span className="text-[10px] uppercase font-semibold tracking-wider px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
+                By Uy &bull; Minimalist
               </span>
             </div>
-            <p className="text-xs text-slate-400">
-              Bộ chuyển đổi tệp vạn năng của Uy &bull; Bảo toàn dữ liệu &bull; Chuẩn xác 100%
+            <p className="text-[11px] text-slate-400">
+              Công cụ chuyển đổi tệp đa năng tối giản &bull; 100% In-Browser
             </p>
           </div>
         </div>
