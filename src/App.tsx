@@ -13,14 +13,14 @@ import { getFileCategory, getValidTargetFormats } from './lib/conversion-matrix'
 import { executeConversion } from './lib/converterEngine';
 import { createZipArchive } from './lib/converters/archiveConverter';
 import { 
-  Play, 
-  Archive, 
-  Trash2, 
-  RefreshCw, 
-  ShieldCheck, 
-  Zap, 
-  Layers
-} from 'lucide-react';
+  IconPlay, 
+  IconArchive, 
+  IconTrash, 
+  IconRefresh, 
+  IconShieldCheck, 
+  IconZap, 
+  IconLayers 
+} from './components/Icons';
 
 export const App: React.FC = () => {
   const [fileList, setFileList] = useState<FileItem[]>([]);
@@ -199,7 +199,7 @@ export const App: React.FC = () => {
           </div>
 
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-300 text-xs font-medium">
-            <Zap className="w-3.5 h-3.5 text-indigo-400" />
+            <IconZap size={14} className="text-indigo-400" />
             <span>UyConvert &bull; Minimalist File Transcoding &bull; By Uy</span>
           </div>
 
@@ -232,7 +232,7 @@ export const App: React.FC = () => {
                     onClick={handleDownloadAllZip}
                     className="flex items-center gap-1.5 px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-lg shadow-sm shadow-emerald-600/30 transition"
                   >
-                    <Archive className="w-3.5 h-3.5" />
+                    <IconArchive size={14} />
                     <span>Tải về tất cả (.ZIP)</span>
                   </button>
                 )}
@@ -244,9 +244,9 @@ export const App: React.FC = () => {
                     className="flex items-center gap-1.5 px-4 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-lg shadow-sm shadow-indigo-600/30 transition disabled:opacity-50"
                   >
                     {isConvertingAll ? (
-                      <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                      <IconRefresh size={14} className="animate-spin" />
                     ) : (
-                      <Play className="w-3.5 h-3.5 fill-current" />
+                      <IconPlay size={14} />
                     )}
                     <span>Chuyển đổi tất cả</span>
                   </button>
@@ -257,7 +257,7 @@ export const App: React.FC = () => {
                   disabled={isConvertingAll}
                   className="flex items-center gap-1 px-3 py-1.5 text-xs text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition"
                 >
-                  <Trash2 className="w-3.5 h-3.5" />
+                  <IconTrash size={14} />
                   <span>Xóa hết</span>
                 </button>
               </div>
@@ -283,7 +283,7 @@ export const App: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 border-t border-slate-900">
           <div className="p-5 rounded-2xl bg-slate-900/40 border border-slate-800/80 space-y-2">
             <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
-              <ShieldCheck className="w-4 h-4" />
+              <IconShieldCheck size={18} />
             </div>
             <h4 className="text-sm font-bold text-slate-200">Không Bao Giờ Lỗi File</h4>
             <p className="text-xs text-slate-400 leading-relaxed">
@@ -293,7 +293,7 @@ export const App: React.FC = () => {
 
           <div className="p-5 rounded-2xl bg-slate-900/40 border border-slate-800/80 space-y-2">
             <div className="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center">
-              <Layers className="w-4 h-4" />
+              <IconLayers size={18} />
             </div>
             <h4 className="text-sm font-bold text-slate-200">Bộ Lọc Ma Trận Động</h4>
             <p className="text-xs text-slate-400 leading-relaxed">
@@ -303,7 +303,7 @@ export const App: React.FC = () => {
 
           <div className="p-5 rounded-2xl bg-slate-900/40 border border-slate-800/80 space-y-2">
             <div className="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center">
-              <Zap className="w-4 h-4" />
+              <IconZap size={18} />
             </div>
             <h4 className="text-sm font-bold text-slate-200">100% In-Browser & Bảo Mật</h4>
             <p className="text-xs text-slate-400 leading-relaxed">

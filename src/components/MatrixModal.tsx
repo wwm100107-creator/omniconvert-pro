@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { X, Search, Layers, Check, ShieldAlert } from 'lucide-react';
+import { 
+  IconClose, 
+  IconSearch, 
+  IconLayers, 
+  IconCheck, 
+  IconAlertTriangle 
+} from './Icons';
 import { CONVERSION_MATRIX, SUPPORTED_FORMATS } from '../lib/conversion-matrix';
 
 interface MatrixModalProps {
@@ -28,7 +34,7 @@ export const MatrixModal: React.FC<MatrixModalProps> = ({ isOpen, onClose }) => 
         <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/50">
           <div className="flex items-center gap-2.5">
             <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-              <Layers className="w-5 h-5" />
+              <IconLayers size={18} />
             </div>
             <div>
               <h3 className="text-base font-bold text-slate-100">
@@ -43,17 +49,17 @@ export const MatrixModal: React.FC<MatrixModalProps> = ({ isOpen, onClose }) => 
             onClick={onClose}
             className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
           >
-            <X className="w-5 h-5" />
+            <IconClose size={20} />
           </button>
         </div>
 
         {/* Filter bar */}
         <div className="p-4 border-b border-slate-800 flex flex-col sm:flex-row gap-3 bg-slate-900/60">
           <div className="relative flex-1">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <IconSearch size={16} className="text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
-              placeholder="Tìm kiếm đuôi file (ví dụ: png, mp4, docx, xlsx)..."
+              placeholder="Tìm kiếm đuôi file (ví dụ: png, mp4, docx, xlsx, io)..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full bg-slate-950 border border-slate-800 focus:border-indigo-500 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-200 outline-none transition"
@@ -109,7 +115,7 @@ export const MatrixModal: React.FC<MatrixModalProps> = ({ isOpen, onClose }) => 
                         key={target}
                         className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
                       >
-                        <Check className="w-3 h-3" />
+                        <IconCheck size={12} />
                         .{target.toUpperCase()}
                       </span>
                     ))}
@@ -122,7 +128,7 @@ export const MatrixModal: React.FC<MatrixModalProps> = ({ isOpen, onClose }) => 
 
         {/* Footer Note */}
         <div className="p-4 border-t border-slate-800 bg-slate-950/60 flex items-center gap-2 text-xs text-slate-400">
-          <ShieldAlert className="w-4 h-4 text-amber-400 shrink-0" />
+          <IconAlertTriangle size={16} className="text-amber-400 shrink-0" />
           <span>
             Quy tắc an toàn dữ liệu: Bất kỳ định dạng nào không nằm trong danh sách chuyển đổi hợp lệ ở trên sẽ <strong>hoàn toàn không được hiển thị</strong> trong menu để ngăn chặn việc người dùng tạo ra các tệp bị lỗi hoặc hỏng cấu trúc.
           </span>

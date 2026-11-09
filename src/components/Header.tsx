@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, HelpCircle, Layers } from 'lucide-react';
+import { IconShieldCheck, IconHelpCircle, IconLayers } from './Icons';
 import { UyLogo } from './UyLogo';
 
 interface HeaderProps {
@@ -35,7 +35,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMatrix, onOpenLogic }) => 
             onClick={onOpenMatrix}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 hover:text-white border border-slate-700 transition"
           >
-            <Layers className="w-3.5 h-3.5 text-indigo-400" />
+            <IconLayers size={14} className="text-indigo-400" />
             <span>Tra cứu Ma trận Đuôi</span>
           </button>
 
@@ -43,12 +43,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMatrix, onOpenLogic }) => 
             onClick={onOpenLogic}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 hover:text-white border border-slate-700 transition"
           >
-            <HelpCircle className="w-3.5 h-3.5 text-pink-400" />
+            <IconHelpCircle size={14} className="text-slate-400" />
             <span>Giải thích Logic (Tiếng Việt)</span>
           </button>
 
           <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs">
-            <ShieldCheck className="w-3.5 h-3.5" />
+            <IconShieldCheck size={14} />
             <span>100% Riêng tư & Bảo mật</span>
           </div>
         </div>

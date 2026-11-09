@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { X, Download, FileText, CheckCircle2 } from 'lucide-react';
+import { IconClose, IconDownload, IconFileText, IconCheckCircle } from './Icons';
 import type { FileItem } from '../lib/types';
 import { formatFileSize } from './FileCard';
 
@@ -66,14 +66,14 @@ export const PreviewModal: React.FC<PreviewModalProps> = ({ item, onClose }) => 
               onClick={handleDownload}
               className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-lg shadow-sm flex items-center gap-1.5 transition"
             >
-              <Download className="w-3.5 h-3.5" />
+              <IconDownload size={14} />
               <span>Tải về</span>
             </button>
             <button
               onClick={onClose}
               className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
             >
-              <X className="w-5 h-5" />
+              <IconClose size={20} />
             </button>
           </div>
         </div>
@@ -93,7 +93,7 @@ export const PreviewModal: React.FC<PreviewModalProps> = ({ item, onClose }) => 
           {isAudio && (
             <div className="w-full max-w-md p-6 bg-slate-900 border border-slate-800 rounded-xl text-center">
               <div className="w-12 h-12 mx-auto rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center mb-4">
-                <CheckCircle2 className="w-6 h-6" />
+                <IconCheckCircle size={24} />
               </div>
               <h4 className="font-semibold text-slate-200 text-sm mb-4">
                 Phát thử âm thanh đã chuyển đổi
@@ -122,7 +122,7 @@ export const PreviewModal: React.FC<PreviewModalProps> = ({ item, onClose }) => 
 
           {!isImage && !isAudio && !isVideo && textContent === null && (
             <div className="text-center py-12 text-slate-400">
-              <FileText className="w-12 h-12 mx-auto text-indigo-400 mb-2 opacity-80" />
+              <IconFileText size={48} className="mx-auto text-indigo-400 mb-2 opacity-80" />
               <p className="text-sm font-medium text-slate-300">
                 Tệp {targetExt.toUpperCase()} đã chuyển đổi thành công!
               </p>

@@ -1,5 +1,17 @@
 import React from 'react';
-import { X, CheckCircle, Shield, Cpu, AlertTriangle, FileCode } from 'lucide-react';
+import { 
+  IconCheckCircle, 
+  IconShieldCheck, 
+  IconCpu, 
+  IconAlertTriangle, 
+  IconCode, 
+  IconClose,
+  IconImage,
+  IconAudio,
+  IconVideo,
+  IconTable,
+  IconFileText
+} from './Icons';
 
 interface LogicModalProps {
   isOpen: boolean;
@@ -15,8 +27,8 @@ export const LogicExplanationModal: React.FC<LogicModalProps> = ({ isOpen, onClo
         {/* Header */}
         <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/60">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-lg bg-pink-500/10 text-pink-400 border border-pink-500/20">
-              <Cpu className="w-5 h-5" />
+            <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+              <IconCpu size={20} />
             </div>
             <div>
               <h3 className="text-base font-bold text-slate-100">
@@ -31,7 +43,7 @@ export const LogicExplanationModal: React.FC<LogicModalProps> = ({ isOpen, onClo
             onClick={onClose}
             className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
           >
-            <X className="w-5 h-5" />
+            <IconClose size={20} />
           </button>
         </div>
 
@@ -40,11 +52,11 @@ export const LogicExplanationModal: React.FC<LogicModalProps> = ({ isOpen, onClo
           {/* Mục 1 */}
           <div className="bg-slate-950/40 border border-slate-800 rounded-xl p-4">
             <h4 className="text-sm md:text-base font-bold text-indigo-300 flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+              <IconCheckCircle size={18} className="text-emerald-400 shrink-0" />
               1. Tại sao chuyển đổi không bao giờ bị lỗi (Chống bẫy "Đổi tên file giả mạo")?
             </h4>
             <p className="mt-2 text-slate-300">
-              Rất nhiều phần mềm kém chất lượng chỉ đơn thuần là <strong>đổi đuôi tên file</strong> (ví dụ đổi <code className="text-pink-300 font-mono">anh.png</code> thành <code className="text-pink-300 font-mono">anh.jpg</code>). Hành vi này không làm thay đổi cấu trúc byte bên trong, dẫn đến phần mềm khác không thể mở được (báo lỗi Corrupt File hoặc Invalid Header).
+              Rất nhiều phần mềm kém chất lượng chỉ đơn thuần là <strong>đổi đuôi tên file</strong> (ví dụ đổi <code className="text-indigo-300 font-mono">anh.png</code> thành <code className="text-indigo-300 font-mono">anh.jpg</code>). Hành vi này không làm thay đổi cấu trúc byte bên trong, dẫn đến phần mềm khác không thể mở được (báo lỗi Corrupt File hoặc Invalid Header).
             </p>
             <p className="mt-2 text-slate-300">
               <strong>UyConvert Pro xử lý chuyển đổi nhị phân thực thụ (True Transcoding):</strong>
@@ -59,7 +71,7 @@ export const LogicExplanationModal: React.FC<LogicModalProps> = ({ isOpen, onClo
           {/* Mục 2 */}
           <div className="bg-slate-950/40 border border-slate-800 rounded-xl p-4">
             <h4 className="text-sm md:text-base font-bold text-indigo-300 flex items-center gap-2">
-              <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
+              <IconAlertTriangle size={18} className="text-amber-400 shrink-0" />
               2. Logic Lọc Ma Trận Động: "Đuôi nào chuyển được mới hiển thị"
             </h4>
             <p className="mt-2 text-slate-300">
@@ -79,40 +91,55 @@ export const LogicExplanationModal: React.FC<LogicModalProps> = ({ isOpen, onClo
           {/* Mục 3 */}
           <div className="bg-slate-950/40 border border-slate-800 rounded-xl p-4">
             <h4 className="text-sm md:text-base font-bold text-indigo-300 flex items-center gap-2">
-              <FileCode className="w-4 h-4 text-cyan-400 shrink-0" />
+              <IconCode size={18} className="text-cyan-400 shrink-0" />
               3. Chi tiết công nghệ chuyển đổi từng phân hệ tệp tin
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
               <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
-                <span className="font-bold text-emerald-400 block mb-1">📸 Hình ảnh (Images)</span>
+                <span className="font-bold text-emerald-400 flex items-center mb-1">
+                  <IconImage inline size={16} />
+                  Hình ảnh (Images)
+                </span>
                 <p className="text-xs text-slate-400">
                   Dùng Canvas 2D API để giải mã pixel, sau đó xuất ra Blob chuẩn MIME. Với <strong>BMP</strong>, hệ thống tự sinh mã nhị phân 54 bytes Header + mảng pixel BGR từ dưới lên. Với <strong>ICO</strong>, xây dựng cấu trúc ICONDIR chuẩn Windows Icon 256x256. Với <strong>PDF</strong>, nhúng hình ảnh vào tọa độ A4/Custom của jsPDF.
                 </p>
               </div>
 
               <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
-                <span className="font-bold text-amber-400 block mb-1">🎵 Âm thanh (Audio)</span>
+                <span className="font-bold text-amber-400 flex items-center mb-1">
+                  <IconAudio inline size={16} />
+                  Âm thanh (Audio)
+                </span>
                 <p className="text-xs text-slate-400">
                   Sử dụng <strong>Web Audio API (AudioContext)</strong> để giải mã luồng audio thành các mẫu sóng âm PCM Float32. Từ đó nén sang <strong>WAV 16-bit PCM</strong> chuẩn phòng thu hoặc dùng thư viện <strong>LameJS</strong> để encode sang <strong>MP3 192kbps</strong> chất lượng cao.
                 </p>
               </div>
 
               <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
-                <span className="font-bold text-cyan-400 block mb-1">🎬 Video & Động ảnh</span>
+                <span className="font-bold text-cyan-400 flex items-center mb-1">
+                  <IconVideo inline size={16} />
+                  Video & Động ảnh
+                </span>
                 <p className="text-xs text-slate-400">
                   Hỗ trợ <strong>tách âm thanh từ video</strong> (Video MP4/WebM/MOV sang MP3/WAV) bằng cách giải mã luồng âm thanh nội tại của video qua AudioContext. Chuyển đổi định dạng video bằng Canvas Stream + MediaRecorder.
                 </p>
               </div>
 
               <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
-                <span className="font-bold text-purple-400 block mb-1">📊 Bảng tính & Dữ liệu</span>
+                <span className="font-bold text-purple-400 flex items-center mb-1">
+                  <IconTable inline size={16} />
+                  Bảng tính & Dữ liệu
+                </span>
                 <p className="text-xs text-slate-400">
                   Tích hợp thư viện <strong>SheetJS (XLSX)</strong> mạnh mẽ nhất thế giới hiện nay, cho phép đọc ghi hai chiều toàn bộ dữ liệu ô (cell values, formulas) giữa XLSX, XLS, CSV, TSV, JSON, HTML, TXT.
                 </p>
               </div>
 
               <div className="p-3 rounded-lg bg-slate-900 border border-slate-800 md:col-span-2">
-                <span className="font-bold text-blue-400 block mb-1">📄 Tài liệu Word (DOCX) & Văn bản</span>
+                <span className="font-bold text-blue-400 flex items-center mb-1">
+                  <IconFileText inline size={16} />
+                  Tài liệu Word (DOCX) & Văn bản
+                </span>
                 <p className="text-xs text-slate-400">
                   Dùng <strong>Mammoth.js</strong> để bóc tách cấu trúc Document Tree của file Word DOCX thành HTML/Text sạch, sau đó xuất sang TXT, Markdown, HTML hoặc PDF phân trang thông minh với ngắt dòng A4 tự động.
                 </p>
@@ -123,7 +150,7 @@ export const LogicExplanationModal: React.FC<LogicModalProps> = ({ isOpen, onClo
           {/* Mục 4 */}
           <div className="bg-slate-950/40 border border-slate-800 rounded-xl p-4">
             <h4 className="text-sm md:text-base font-bold text-indigo-300 flex items-center gap-2">
-              <Shield className="w-4 h-4 text-emerald-400 shrink-0" />
+              <IconShieldCheck size={18} className="text-emerald-400 shrink-0" />
               4. Bảo mật 100% Client-Side & Không giới hạn Vercel Serverless
             </h4>
             <p className="mt-2 text-slate-300">
@@ -144,7 +171,7 @@ export const LogicExplanationModal: React.FC<LogicModalProps> = ({ isOpen, onClo
           </span>
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-lg transition"
+            className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold rounded-lg border border-slate-700 transition"
           >
             Đã hiểu
           </button>

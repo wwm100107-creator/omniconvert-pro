@@ -1,13 +1,13 @@
-# 🌟 UyConvert Pro - Bộ Chuyển Đổi Tệp Đa Định Dạng Uy Tín | By Uy
+# UyConvert Pro - Bộ Chuyển Đổi Tệp Đa Định Dạng Uy Tín | By Uy
 
 > **Công cụ web vạn năng của Uy hỗ trợ chuyển đổi tất cả các định dạng tệp (Ảnh, Video, Âm thanh, Sơ đồ .IO/.DRAWIO, Tài liệu Word, Bảng tính Excel, Dữ liệu có cấu trúc & Nén) với cơ chế bảo toàn tính toàn vẹn 100%, tuyệt đối không làm hỏng cấu trúc tệp.**
 
 ---
 
-## 📖 Bảng Trình Bày Chi Tiết Toàn Bộ Logic Thực Hiện (Tiếng Việt)
+## Bảng Trình Bày Chi Tiết Toàn Bộ Logic Thực Hiện (Tiếng Việt)
 
 ### 1. Tại sao chuyển đổi không bao giờ bị lỗi (Chống bẫy "Đổi tên file giả mạo")?
-- **Vấn đề thực tế**: Rất nhiều công cụ chuyển đổi trên thị trường chỉ đơn giản là đổi tên phần mở rộng (ví dụ từ `tailieu.png` thành `tailieu.jpg` hoặc từ `video.mp4` thành `video.mp3`). Điều này **không làm thay đổi cấu trúc byte nhị phân** bên trong. Khi người dùng mở file bằng các phần mềm chuyên dụng (Photoshop, Excel, Media Player), phần mềm sẽ báo lỗi *“File format or extension is not valid”* hoặc *“File is corrupted”*.
+- **Vấn đề thực tế**: Rất nhiều công cụ chuyển đổi trên thị trường chỉ đơn giản là đổi tên phần mở rộng (ví dụ từ `tailieu.png` thành `tailieu.jpg` hoặc từ `video.mp4` thành `video.mp3`). Điều này **không làm thay đổi cấu trúc byte nhị phân** bên trong. Khi người dùng mở file bằng các phần mềm chuyên dụng (Photoshop, Excel, Media Player), phần mềm sẽ báo lỗi *"File format or extension is not valid"* hoặc *"File is corrupted"*.
 - **Giải pháp của UyConvert Pro**:
   - Hệ thống thực hiện **chuyển đổi nhị phân thực thụ (True Transcoding & Data Reconstruction)**.
   - Tệp gốc được nạp vào bộ nhớ RAM và giải mã hoàn toàn thành dữ liệu thô (Raw Pixel Array cho ảnh, PCM Audio Samples cho âm thanh, Abstract Syntax Tree cho tài liệu, Sheet Cell Objects cho bảng tính).
@@ -27,7 +27,7 @@
 
 ### 3. Chi Tiết Kỹ Thuật Từng Phân Hệ Định Dạng
 
-#### 📸 A. Phân Hệ Hình Ảnh (Images)
+#### A. Phân Hệ Hình Ảnh (Images)
 - **Định dạng nguồn hỗ trợ**: `PNG`, `JPG`, `JPEG`, `WEBP`, `BMP`, `ICO`, `SVG`, `TIFF`, `AVIF`, `GIF`...
 - **Định dạng đích hỗ trợ**: `PNG`, `JPG`, `WEBP`, `BMP`, `ICO`, `SVG`, `PDF`...
 - **Logic xử lý**:
@@ -36,7 +36,7 @@
   - **SVG**: Hỗ trợ chuyển đổi từ vector sang raster (thông qua Image element + Canvas độ phân giải cao) hoặc bọc raster vào SVG container tiêu chuẩn với base64 dataURI.
   - **PDF**: Nhúng trực tiếp hình ảnh vào trang PDF chuẩn khổ ảnh bằng thư viện `jsPDF`.
 
-#### 🎵 B. Phân Hệ Âm Thanh (Audio)
+#### B. Phân Hệ Âm Thanh (Audio)
 - **Định dạng nguồn hỗ trợ**: `MP3`, `WAV`, `OGG`, `AAC`, `M4A`, `FLAC`, `WEBA`...
 - **Định dạng đích hỗ trợ**: `WAV`, `MP3`, `OGG`, `WEBA`...
 - **Logic xử lý**:
@@ -44,20 +44,20 @@
   - **WAV Encoder**: Tự tạo cấu trúc container RIFF `WAVE` với chunk `fmt ` 16-bit signed integer PCM, interleave 2 kênh Stereo/Mono và tính toán chính xác byteRate, blockAlign.
   - **MP3 Encoder**: Tích hợp thuật toán nén âm thanh **LameJS (MP3 Encoder)** chạy client-side, nén các khối 1152 mẫu âm thanh với bitrate cao 192kbps chuẩn studio.
 
-#### 🎬 C. Phân Hệ Video & Hoạt Ảnh
+#### C. Phân Hệ Video & Hoạt Ảnh
 - **Định dạng nguồn hỗ trợ**: `MP4`, `WEBM`, `MOV`, `MKV`, `AVI`, `WMV`, `FLV`...
 - **Định dạng đích hỗ trợ**: `MP3` (Tách nhạc), `WAV` (Tách âm chất lượng cao), `GIF` (Ảnh động), `WEBM` (Video web), `MP4`...
 - **Logic xử lý**:
   - **Tách nhạc từ Video**: Nạp dữ liệu nhị phân của video vào `AudioContext`, giải mã luồng audio track bên trong và xuất trực tiếp thành MP3 hoặc WAV chỉ trong vài giây.
   - **Video sang GIF / Canvas Recording**: Đọc video từng frame bằng HTML5 Video, trích xuất qua Canvas 2D và đóng gói thành GIF animation hoặc video chuyển mã qua `MediaRecorder`.
 
-#### 📊 D. Phân Hệ Bảng Tính & Dữ Liệu
+#### D. Phân Hệ Bảng Tính & Dữ Liệu
 - **Định dạng hỗ trợ**: `XLSX`, `XLS`, `CSV`, `TSV`, `JSON`, `HTML`, `TXT`, `ODS`, `XML`, `YAML`...
 - **Logic xử lý**:
   - Tích hợp công cụ **SheetJS (XLSX)** để giải mã cấu trúc workbook, worksheet, kiểu dữ liệu từng ô (chuỗi, số, ngày tháng, công thức).
   - Chuyển đổi hai chiều mượt mà giữa bảng tính Excel và các định dạng trao đổi dữ liệu như JSON, CSV, TSV, HTML table hoặc PDF báo cáo.
 
-#### 📄 E. Phân Hệ Tài Liệu Word, Văn Bản & Sơ Đồ (.IO, .DRAWIO)
+#### E. Phân Hệ Tài Liệu Word, Văn Bản & Sơ Đồ (.IO, .DRAWIO)
 - **Định dạng hỗ trợ**: `DOCX`, `TXT`, `MD`, `HTML`, `PDF`, `.IO`, `.DRAWIO`...
 - **Logic xử lý**:
   - Dùng **Mammoth.js** để bóc tách tệp nén OpenXML của Word, trích xuất cấu trúc văn bản sạch không rác (Clean Semantic Document Tree).
@@ -74,7 +74,7 @@
 
 ---
 
-## 🚀 Hướng Dẫn Cài Đặt & Chạy Dưới Local
+## Hướng Dẫn Cài Đặt & Chạy Dưới Local
 
 ```bash
 # 1. Cài đặt các thư viện phụ thuộc
@@ -89,7 +89,7 @@ npm run build
 
 ---
 
-## 🌐 Triển Khai Lên Vercel
+## Triển Khai Lên Vercel
 
 Dự án được tối ưu hóa sẵn cho **Vercel**:
 - Khung sườn: Vite React Single Page Application (SPA).

@@ -1,23 +1,21 @@
 import React from 'react';
-import type { 
-  FileItem 
-} from '../lib/types';
+import type { FileItem } from '../lib/types';
 import { 
-  FileImage, 
-  FileAudio, 
-  FileVideo, 
-  FileText, 
-  FileSpreadsheet, 
-  FileCode, 
-  Archive, 
-  ArrowRight, 
-  Download, 
-  Trash2, 
-  CheckCircle2, 
-  AlertCircle, 
-  Loader2,
-  Eye
-} from 'lucide-react';
+  IconImage, 
+  IconAudio, 
+  IconVideo, 
+  IconFileText, 
+  IconTable, 
+  IconCode, 
+  IconArchive, 
+  IconArrowRight, 
+  IconDownload, 
+  IconTrash, 
+  IconCheckCircle, 
+  IconAlertCircle, 
+  IconLoader,
+  IconEye
+} from './Icons';
 
 interface FileCardProps {
   item: FileItem;
@@ -45,19 +43,19 @@ export const FileCard: React.FC<FileCardProps> = ({
   const getCategoryIcon = () => {
     switch (item.category) {
       case 'image':
-        return <FileImage className="w-5 h-5 text-emerald-400" />;
+        return <IconImage size={20} className="text-emerald-400" />;
       case 'video':
-        return <FileVideo className="w-5 h-5 text-cyan-400" />;
+        return <IconVideo size={20} className="text-cyan-400" />;
       case 'audio':
-        return <FileAudio className="w-5 h-5 text-amber-400" />;
+        return <IconAudio size={20} className="text-amber-400" />;
       case 'spreadsheet':
-        return <FileSpreadsheet className="w-5 h-5 text-purple-400" />;
+        return <IconTable size={20} className="text-purple-400" />;
       case 'data':
-        return <FileCode className="w-5 h-5 text-indigo-400" />;
+        return <IconCode size={20} className="text-indigo-400" />;
       case 'archive':
-        return <Archive className="w-5 h-5 text-rose-400" />;
+        return <IconArchive size={20} className="text-rose-400" />;
       default:
-        return <FileText className="w-5 h-5 text-blue-400" />;
+        return <IconFileText size={20} className="text-blue-400" />;
     }
   };
 
@@ -92,7 +90,7 @@ export const FileCard: React.FC<FileCardProps> = ({
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         {/* File Info */}
         <div className="flex items-start md:items-center gap-3.5 flex-1 min-w-0">
-          <div className="p-2.5 rounded-lg bg-slate-800 border border-slate-700/80 shrink-0">
+          <div className="p-2.5 rounded-lg bg-slate-800 border border-slate-700/80 shrink-0 flex items-center justify-center">
             {getCategoryIcon()}
           </div>
           <div className="min-w-0 flex-1">
@@ -124,7 +122,7 @@ export const FileCard: React.FC<FileCardProps> = ({
             .{item.extension}
           </div>
 
-          <ArrowRight className="w-4 h-4 text-slate-500" />
+          <IconArrowRight size={14} className="text-slate-500" />
 
           {hasValidTargets ? (
             <select
@@ -159,7 +157,7 @@ export const FileCard: React.FC<FileCardProps> = ({
 
           {item.status === 'converting' && (
             <div className="flex items-center gap-2 text-indigo-400 text-xs font-medium px-3 py-1.5 bg-indigo-500/10 border border-indigo-500/20 rounded-lg">
-              <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              <IconLoader size={14} className="animate-spin" />
               <span>Đang xử lý {item.progress}%</span>
             </div>
           )}
@@ -167,7 +165,7 @@ export const FileCard: React.FC<FileCardProps> = ({
           {item.status === 'success' && (
             <div className="flex items-center gap-2">
               <span className="flex items-center gap-1 text-emerald-400 text-xs font-medium px-2 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-lg">
-                <CheckCircle2 className="w-3.5 h-3.5" />
+                <IconCheckCircle size={14} />
                 <span>Xong</span>
               </span>
 
@@ -177,7 +175,7 @@ export const FileCard: React.FC<FileCardProps> = ({
                   title="Xem trước kết quả"
                   className="p-1.5 text-slate-400 hover:text-indigo-300 hover:bg-slate-800 rounded-lg transition"
                 >
-                  <Eye className="w-4 h-4" />
+                  <IconEye size={16} />
                 </button>
               )}
 
@@ -185,7 +183,7 @@ export const FileCard: React.FC<FileCardProps> = ({
                 onClick={handleDownload}
                 className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-lg shadow-sm shadow-emerald-600/30 transition flex items-center gap-1.5"
               >
-                <Download className="w-3.5 h-3.5" />
+                <IconDownload size={14} />
                 <span>Tải về</span>
               </button>
             </div>
@@ -193,7 +191,7 @@ export const FileCard: React.FC<FileCardProps> = ({
 
           {item.status === 'error' && (
             <div className="flex items-center gap-1.5 text-rose-400 text-xs px-2.5 py-1.5 bg-rose-500/10 border border-rose-500/20 rounded-lg" title={item.error}>
-              <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+              <IconAlertCircle size={14} className="shrink-0" />
               <span className="truncate max-w-[150px]">{item.error || 'Lỗi chuyển đổi'}</span>
             </div>
           )}
@@ -205,7 +203,7 @@ export const FileCard: React.FC<FileCardProps> = ({
             title="Xóa tệp này"
             className="p-1.5 text-slate-500 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition disabled:opacity-40"
           >
-            <Trash2 className="w-4 h-4" />
+            <IconTrash size={16} />
           </button>
         </div>
       </div>
@@ -214,7 +212,7 @@ export const FileCard: React.FC<FileCardProps> = ({
       {item.status === 'converting' && (
         <div className="w-full bg-slate-800 h-1.5 rounded-full mt-3 overflow-hidden">
           <div 
-            className="bg-gradient-to-r from-indigo-500 to-purple-500 h-full rounded-full transition-all duration-300"
+            className="bg-indigo-500 h-full rounded-full transition-all duration-300"
             style={{ width: `${item.progress}%` }}
           />
         </div>
